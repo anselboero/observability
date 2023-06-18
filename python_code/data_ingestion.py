@@ -7,7 +7,17 @@ import git
 app_user = getpass.getuser()
 
 # Retrieve information about application code from git repo
-code_repo = git.Repo(search_parent_directories=True).remote()
+code_repo = git.Repo(search_parent_directories=True)
+
+# Fetching the latest commit
+commit = code_repo.head.commit
+code_version = commit.hexsha
+code_author = commit.author.name
+
+print(code_repo.is_dirty())
+
+print(code_version, code_author, app_user)
+
 
 
 
